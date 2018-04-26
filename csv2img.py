@@ -76,7 +76,7 @@ validation: ID labels"""
         filepath_or_buffer=csv_fname,
         header=None  # Expecting input to not have colnames.
     )
-    if is_validation is False:
+    if not is_validation:
         if margin == 1:
             labels = csv.iloc[:, -1]
             csv = csv.iloc[:, :-1]
@@ -87,7 +87,7 @@ validation: ID labels"""
             # csv = csv.iloc[:-1, :]
             return csv, labels
 
-    elif is_validation is True:
+    elif is_validation:
         entries = csv.shape[0] # Needs to be fixed with margin
         labels = pd.Series(['VAL'] * entries)  # Create VAL labels
         # to make sure
