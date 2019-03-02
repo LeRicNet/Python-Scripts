@@ -1,3 +1,14 @@
+import tqdm
+import os
+from pathos.multiprocessing import ThreadingPool as Pool
+
+# Utility to check for floats in a .txt file
+#
+# This was used to find a corrupted TF bottleneck file somewhere
+# within 150,000 files
+#
+# pathos.multiprocessing used to avoid known issue with pickling local processes in multiprocessing module
+
 def check_floats(dir_path):
 	file_list = os.listdir(dir_path)
 	file_list = [os.path.join(dir_path, fl) for fl in file_list]
